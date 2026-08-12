@@ -27,6 +27,16 @@ export const metadata = {
   authors: [{ name: "NexAlliance Digital Studio" }],
   creator: "NexAlliance",
   publisher: "NexAlliance",
+  icons: {
+    icon: [
+      { url: "/assets/images/logo.png" },
+      { url: "/assets/images/logo.png", type: "image/png" },
+    ],
+    shortcut: ["/assets/images/logo.png"],
+    apple: [
+      { url: "/assets/images/logo.png" },
+    ],
+  },
   formatDetection: {
     email: false,
     address: false,
@@ -71,7 +81,7 @@ const jsonLdSchema = {
   "@type": "Organization",
   name: "NexAlliance",
   url: "https://nexallianceit.com",
-  logo: "https://nexallianceit.com/favicon.ico",
+  logo: "https://nexallianceit.com/assets/images/logo.png",
   description: "Enterprise digital transformation, custom ERP, CRM, cloud architecture, and AI automation studio.",
   sameAs: [],
   knowsAbout: [
@@ -92,6 +102,8 @@ export default function RootLayout({ children }) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased overflow-x-hidden`}
     >
       <head>
+        <link rel="icon" href="/assets/images/logo.png" type="image/png" sizes="any" />
+        <link rel="apple-touch-icon" href="/assets/images/logo.png" />
         {/* Instant Non-Flashing Critical Fallback Preloader Overlay */}
         <style
           dangerouslySetInnerHTML={{
