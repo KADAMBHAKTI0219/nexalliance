@@ -15,7 +15,7 @@ export default function Footer() {
           {/* Brand Info */}
           <div className="lg:col-span-2 flex flex-col items-start">
             <Link href="/" className="flex items-center gap-2.5 group mb-4">
-              <img src="/assets/images/logo.png" alt="NexxAlliance Logo" className="h-10 w-auto object-contain transition-transform group-hover:scale-105" />
+              <img src="/assets/images/logo.png" alt="NexAlliance Logo" className="h-10 w-auto object-contain transition-transform group-hover:scale-105" />
 
             </Link>
             <p className="text-zinc-600 text-sm leading-relaxed max-w-sm mb-6 font-normal">
@@ -50,7 +50,7 @@ export default function Footer() {
                 <Share2 className="w-4 h-4" />
               </a>
               <a
-                href="mailto:contact@nexxalliance.com"
+                href="mailto:contact@nexalliance.com"
                 aria-label="Email"
                 className="w-10 h-10 rounded-full bg-zinc-100 border border-zinc-200 flex items-center justify-center text-zinc-600 hover:text-cyan-600 hover:border-cyan-500/40 hover:bg-cyan-50 transition-all duration-300"
               >
@@ -120,8 +120,8 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-cyan-600 shrink-0" />
-                <a href="mailto:contact@nexxalliance.com" className="hover:text-cyan-600 transition-colors">
-                  contact@nexxalliance.com
+                <a href="mailto:contact@nexalliance.com" className="hover:text-cyan-600 transition-colors">
+                  contact@nexalliance.com
                 </a>
               </div>
               <div className="flex items-center gap-2.5">
@@ -136,7 +136,7 @@ export default function Footer() {
 
         {/* Bottom Strip */}
         <div className="pt-8 border-t border-zinc-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-medium text-zinc-500">
-          <p>© {new Date().getFullYear()} NEXXALLIANCE. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} NEXALLIANCE. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <Link href="/" className="hover:text-cyan-600 transition-colors">
               Privacy Policy

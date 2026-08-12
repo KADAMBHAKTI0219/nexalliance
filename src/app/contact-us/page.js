@@ -39,7 +39,7 @@ export default function ContactPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText('hello@nexxalliance.com');
+    navigator.clipboard.writeText('hello@nexalliance.com');
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2000);
   };
@@ -79,7 +79,7 @@ export default function ContactPage() {
             transition={{ delay: 0.1 }}
             className="text-4xl sm:text-6xl font-black text-[#25294a] tracking-tight font-sans"
           >
-            Get In Touch With <span className="bg-gradient-to-r from-[#3b5da6] via-blue-500 to-[#25294a] bg-clip-text text-transparent">NexxAlliance.</span>
+            Get In Touch With <span className="bg-gradient-to-r from-[#3b5da6] via-blue-500 to-[#25294a] bg-clip-text text-transparent">NexAlliance.</span>
           </motion.h1>
 
           <motion.p
@@ -121,7 +121,7 @@ export default function ContactPage() {
                 </div>
                 <div className="truncate">
                   <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider block">EMAIL ADDRESS</span>
-                  <span className="text-sm sm:text-base font-extrabold text-[#25294a] truncate block">hello@nexxalliance.com</span>
+                  <span className="text-sm sm:text-base font-extrabold text-[#25294a] truncate block">hello@nexalliance.com</span>
                 </div>
               </div>
               <button

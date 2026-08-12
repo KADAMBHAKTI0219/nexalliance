@@ -1,0 +1,249 @@
+[
+  {
+    "title": "Project 1",
+    "problemStatement": "Hotel staff managed tasks through WhatsApp, making it difficult to track assignments, monitor completion status, and identify department-wise workload.",
+    "identification": [
+      "Our Best Service",
+      "Hotel Hilton TMS",
+      "Mad Over Grills MS",
+      "Custom Restaurant System"
+    ],
+    "solution": [
+      "Nirman Architects MS",
+      "Modulite Interior",
+      "Har Bole \\205 News Platform"
+    ],
+    "outcome": "Improved task visibility, accountability, and operational efficiency across all hotel departments."
+  },
+  {
+    "title": "Project 2",
+    "problemStatement": "The restaurant relied on third-party billing software, creating concerns over data security and limited operational control.",
+    "identification": [
+      "Hotel Hilton TMS",
+      "Mad Over Grills MS",
+      "Custom Restaurant System",
+      "Nirman Architects MS"
+    ],
+    "solution": [
+      "Modulite Interior",
+      "Har Bole \\205 News Platform"
+    ],
+    "outcome": "Delivered a secure offline billing solution with complete control over restaurant operations and business data."
+  },
+  {
+    "title": "Hotel Hilton TMS",
+    "problemStatement": "Restaurants struggle to manage billing, table operations, and customer orders efficiently using disconnected or manual processes. This leads to billing errors, slower service, and limited operational insights.",
+    "identification": [
+      "Mad Over Grills MS",
+      "Custom Restaurant System",
+      "Nirman Architects MS",
+      "Modulite Interior"
+    ],
+    "solution": [
+      "Har Bole \\205 News Platform",
+      "Novva Salon"
+    ],
+    "outcome": "Simplified restaurant operations with faster billing, streamlined order management, and improved operational efficiency."
+  },
+  {
+    "title": "Mad Over Grills MS",
+    "problemStatement": "Architectural firms often rely on multiple tools to manage projects, drawings, employees, and client communication, resulting in fragmented workflows and reduced team productivity.",
+    "identification": [
+      "Custom Restaurant System",
+      "Nirman Architects MS",
+      "Modulite Interior",
+      "Har Bole \\205 News Platform"
+    ],
+    "solution": [
+      "Novva Salon",
+      "Gas Agency"
+    ],
+    "outcome": "Centralized project execution, improved collaboration, and enhanced visibility across architectural operations."
+  },
+  {
+    "title": "Custom Restaurant System",
+    "problemStatement": "Managing multiple interior projects, site activities, and team coordination manually makes it difficult to track progress, meet timelines, and maintain project documentation.",
+    "identification": [
+      "Nirman Architects MS",
+      "Modulite Interior",
+      "Har Bole \\205 News Platform",
+      "Novva Salon"
+    ],
+    "solution": [
+      "Gas Agency",
+      "V Square Neuro Spine Centre",
+      "Simplified HR operations and improved workforce management through automation."
+    ],
+    "outcome": "Improved project visibility, streamlined execution, and better coordination across interior projects."
+  },
+  {
+    "title": "Nirman Architects MS",
+    "problemStatement": "Managing news content, reporters, and breaking updates manually delayed publishing and made it difficult to deliver timely, organized news across digital channels.",
+    "identification": [
+      "Modulite Interior",
+      "Har Bole \\205 News Platform",
+      "Novva Salon",
+      "Gas Agency"
+    ],
+    "solution": [
+      "V Square Neuro Spine Centre",
+      "Simplified HR operations and improved workforce management through automation.",
+      "Dotteds",
+      "Improved property discovery, lead generation, and customer engagement."
+    ],
+    "outcome": "Enabled faster news publishing, streamlined content management, and increased audience engagement."
+  },
+  {
+    "title": "Modulite Interior",
+    "problemStatement": "Emergency teams lacked a centralized system to report incidents, coordinate resources, and monitor disaster response, resulting in delayed decision-making during critical situations.",
+    "identification": [
+      "Har Bole \\205 News Platform",
+      "Novva Salon",
+      "Gas Agency",
+      "V Square Neuro Spine Centre"
+    ],
+    "solution": [
+      "Simplified HR operations and improved workforce management through automation.",
+      "Dotteds",
+      "Improved property discovery, lead generation, and customer engagement.",
+      "BrandBox"
+    ],
+    "outcome": "Improved disaster response through centralized coordination, real-time monitoring, and faster emergency management."
+  },
+  {
+    "title": "Modulite Interior",
+    "problemStatement": "Managing appointments, staff attendance, salaries, and daily salon operations manually led to scheduling conflicts, administrative overhead, and limited business insights.",
+    "identification": [
+      "Novva Salon",
+      "Gas Agency",
+      "V Square Neuro Spine Centre",
+      "Simplified HR operations and improved workforce management through automation."
+    ],
+    "solution": [
+      "Dotteds",
+      "Improved property discovery, lead generation, and customer engagement.",
+      "BrandBox",
+      "ArkA Stone Realty"
+    ],
+    "outcome": "Automated salon operations, improved staff management, and enhanced customer service with streamlined workflows."
+  },
+  {
+    "title": "Modulite Interior",
+    "problemStatement": "Managing gas inventory, purchases, and sales manually made it difficult to maintain stock accuracy, track transactions, and generate business insights.",
+    "identification": [
+      "Novva Salon",
+      "Gas Agency",
+      "V Square Neuro Spine Centre",
+      "Simplified HR operations and improved workforce management through automation."
+    ],
+    "solution": [
+      "Dotteds",
+      "Improved property discovery, lead generation, and customer engagement.",
+      "BrandBox",
+      "ArkA Stone Realty"
+    ],
+    "outcome": "Improved inventory accuracy, streamlined operations, and enhanced business reporting."
+  },
+  {
+    "title": "Novva Salon",
+    "problemStatement": "Patients faced difficulty accessing hospital information, doctor details, and consultation services through traditional communication channels.",
+    "identification": [
+      "Gas Agency",
+      "V Square Neuro Spine Centre",
+      "Simplified HR operations and improved workforce management through automation.",
+      "Dotteds"
+    ],
+    "solution": [
+      "Improved property discovery, lead generation, and customer engagement.",
+      "BrandBox",
+      "ArkA Stone Realty",
+      "Luxbury Properties"
+    ],
+    "outcome": "Improved patient accessibility, communication, and the hospital's digital presence."
+  },
+  {
+    "title": "Gas Agency",
+    "problemStatement": "Fashion businesses needed a centralized platform to manage products, inventory, and customer orders while providing a seamless online shopping experience.",
+    "identification": [
+      "V Square Neuro Spine Centre",
+      "Simplified HR operations and improved workforce management through automation.",
+      "Dotteds",
+      "Improved property discovery, lead generation, and customer engagement."
+    ],
+    "solution": [
+      "BrandBox",
+      "ArkA Stone Realty",
+      "Luxbury Properties",
+      "Website"
+    ],
+    "outcome": "Streamlined online retail operations and improved the customer shopping experience."
+  },
+  {
+    "title": "V Square Neuro Spine Centre",
+    "problemStatement": "Managing employee attendance, leave, and workforce records manually increased administrative workload and reduced HR efficiency.",
+    "identification": [
+      "Simplified HR operations and improved workforce management through automation.",
+      "Dotteds",
+      "Improved property discovery, lead generation, and customer engagement.",
+      "BrandBox"
+    ],
+    "solution": [
+      "ArkA Stone Realty",
+      "Luxbury Properties",
+      "Website",
+      "Phone Number"
+    ],
+    "outcome": "Simplified HR operations and improved workforce management through automation."
+  },
+  {
+    "title": "Dotteds",
+    "problemStatement": "Managing property listings and customer inquiries manually reduced property visibility and slowed lead conversion.",
+    "identification": [
+      "Improved property discovery, lead generation, and customer engagement.",
+      "BrandBox",
+      "ArkA Stone Realty",
+      "Luxbury Properties"
+    ],
+    "solution": [
+      "Website",
+      "Phone Number",
+      "Vrani Chemicals",
+      "Get in Touch"
+    ],
+    "outcome": "Improved property discovery, lead generation, and customer engagement."
+  },
+  {
+    "title": "BrandBox",
+    "problemStatement": "Luxury property businesses required a digital platform to showcase premium projects and efficiently manage investor inquiries.",
+    "identification": [
+      "ArkA Stone Realty",
+      "Luxbury Properties",
+      "Website",
+      "Phone Number"
+    ],
+    "solution": [
+      "Vrani Chemicals",
+      "Get in Touch",
+      "Thank You",
+      "NexAllience portfolio"
+    ],
+    "outcome": "Enhanced property visibility and generated quality leads from buyers and investors."
+  },
+  {
+    "title": "ArkA Stone Realty",
+    "problemStatement": "The company lacked an effective digital platform to showcase products, manage content, and engage with potential customers online.",
+    "identification": [
+      "Luxbury Properties",
+      "Website",
+      "Phone Number",
+      "Vrani Chemicals"
+    ],
+    "solution": [
+      "Get in Touch",
+      "Thank You",
+      "NexAllience portfolio",
+      "D:20260804113541+00'00'"
+    ],
+    "outcome": "Strengthened brand visibility and simplified product and customer communication."
+  }
+]

@@ -7,23 +7,23 @@ import { cn } from '@/lib/utils';
 
 const DEFAULT_ITEMS = [
   {
-    question: "What specialized services does NexxAlliance offer?",
-    answer: "NexxAlliance specializes in custom Enterprise ERP platforms, sales CRM systems, high-performance Next.js web applications, digital growth & SEO engineering, multi-region cloud infrastructure, native mobile apps (iOS & Android), and autonomous AI agent automation.",
+    question: "What specialized services does NexAlliance offer?",
+    answer: "NexAlliance specializes in custom Enterprise ERP platforms, sales CRM systems, high-performance Next.js web applications, digital growth & SEO engineering, multi-region cloud infrastructure, native mobile apps (iOS & Android), and autonomous AI agent automation.",
   },
   {
     question: "How long does a custom software or AI project take from discovery to launch?",
     answer: "Project timelines depend on technical scope. MVP web platforms & custom dashboards typically take 4 to 6 weeks, while enterprise ERP systems, SaaS platforms, and custom AI LLM integrations range between 8 and 12 weeks delivered in agile two-week sprints.",
   },
   {
-    question: "Can NexxAlliance integrate custom AI LLM models into existing legacy infrastructure?",
+    question: "Can NexAlliance integrate custom AI LLM models into existing legacy infrastructure?",
     answer: "Yes. We engineer secure API bridges, custom LLM agents, predictive machine learning models, computer vision pipelines, and automated telemetry triggers into existing legacy ERPs and enterprise databases without data disruption.",
   },
   {
-    question: "How does NexxAlliance guarantee data security, high availability, and 99.99% uptime?",
+    question: "How does NexAlliance guarantee data security, high availability, and 99.99% uptime?",
     answer: "We implement Zero-Trust security mesh protocols, Kubernetes multi-region failover clusters, encrypted database architecture, and automated CI/CD deployment pipelines ensuring end-to-end data privacy and guaranteed 99.99% system uptime.",
   },
   {
-    question: "How do we initiate a technical discovery session with the NexxAlliance engineering team?",
+    question: "How do we initiate a technical discovery session with the NexAlliance engineering team?",
     answer: "You can click 'CONTACT' in the navigation bar or reach out via our contact page. Our software architects will schedule an initial technical discovery session within 24 hours to analyze your system requirements and provide a detailed implementation roadmap.",
   },
 ];

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+// Register GSAP ScrollTrigger plugin on client
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -83,16 +84,16 @@ export default function Herosection() {
         0
       );
 
-      // 5. Center Card Expands outward to fill 100% Viewport width & height
+      // 5. Center Card expands smoothly from CENTER to fill 100% viewport
+      const targetScaleX = isMobile ? 100 / 78 : 100 / 46;
+      const targetScaleY = isMobile ? 100 / 44 : 100 / 56;
+      const scaleFactor = Math.max(targetScaleX, targetScaleY) * 1.08;
+
       tl.to(
         centerCardRef.current,
         {
-          width: '100vw',
-          height: '100vh',
-          maxWidth: '100vw',
-          maxHeight: '100vh',
+          scale: scaleFactor,
           borderRadius: '0px',
-          borderWidth: '0px',
           duration: 1,
           ease: 'power2.inOut',
         },
@@ -105,62 +106,53 @@ export default function Herosection() {
 
   return (
     <section
+      id="hero"
       ref={sectionRef}
-      role="banner"
-      aria-label="NexxAlliance Hero Showcase"
-      className="relative w-full h-screen bg-[#f8fafc] text-[#25294a] flex flex-col justify-between overflow-hidden select-none"
+      className="relative w-full h-screen bg-white text-[#25294a] overflow-hidden select-none flex flex-col justify-between"
     >
-      {/* Background Ambient Radial Blur Glow */}
-      <div 
-        aria-hidden="true" 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85vw] max-w-[1200px] h-[55vh] max-h-[700px] bg-gradient-to-tr from-[#3b5da6]/15 via-[#25294a]/5 to-transparent rounded-full blur-3xl pointer-events-none z-0 transform-gpu" 
-      />
-
-      {/* Top Header Text & Badge (SEO, AEO & GEO Optimized) */}
-      <header
+      {/* Top Header Text & Badge */}
+      <div
         ref={headerRef}
-        className="z-20 text-center w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center shrink-0 pt-6 sm:pt-10 lg:pt-12 pointer-events-none"
+        className="z-20 text-center w-full max-w-7xl mx-auto px-4 flex flex-col items-center shrink-0 pt-6 sm:pt-10 lg:pt-12 pointer-events-none"
       >
         <h1 className="text-3xl sm:text-6xl md:text-7xl lg:text-8xl 2xl:text-9xl font-black uppercase tracking-wider sm:tracking-widest text-[#3b5da6] font-sans drop-shadow-sm leading-none">
           NEXALLIANCE
         </h1>
         <p className="mt-2.5 sm:mt-3 text-[10px] sm:text-xs md:text-sm 2xl:text-base text-[#3b5da6] font-extrabold tracking-[0.15em] sm:tracking-[0.25em] uppercase bg-[#3b5da6]/10 px-4 sm:px-6 py-1.5 sm:py-2 rounded-full border border-[#3b5da6]/20 shadow-sm max-w-[92vw] whitespace-nowrap overflow-hidden text-ellipsis">
-          Intelligent Industrial Automation & Enterprise Software Studio
+          Intelligent Industrial Automation & Software
         </p>
-      </header>
+      </div>
 
-      {/* Gallery Image Row Container - Perfectly Centered & Responsive across 100% Devices */}
+      {/* Gallery Image Row Container - Perfectly Centered & Max-w-7xl Constrained */}
       <div className="relative w-full max-w-7xl mx-auto flex-1 flex items-center justify-center gap-3 sm:gap-6 lg:gap-8 px-4 sm:px-8 overflow-hidden z-10">
 
         {/* Left Image Card: INNOVATE */}
-        <article
+        <div
           ref={leftCardRef}
-          aria-label="Innovate NexxAlliance Technology"
           className="relative z-10 w-[28vw] sm:w-[22vw] lg:w-[20vw] max-w-[280px] h-[38vh] sm:h-[48vh] lg:h-[50vh] max-h-[460px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border border-zinc-200/90 group shrink-0"
         >
           <Image
             src="/assets/images/innovate.png"
-            alt="Innovate Digital Technology NexxAlliance"
+            alt="Innovate NexAlliance"
             fill
             priority
             sizes="(max-width: 640px) 30vw, (max-width: 1024px) 22vw, 280px"
             className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
           />
-          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
-          <div className="absolute bottom-3 sm:bottom-6 left-2 sm:left-6 right-2 sm:right-6 text-white font-black text-xs sm:text-3xl lg:text-4xl uppercase tracking-wider leading-none drop-shadow-md pointer-events-none truncate text-center sm:text-left">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+          <div className="absolute bottom-3 sm:bottom-6 left-2 sm:left-6 right-2 sm:right-6 text-white font-black text-xs sm:text-2xl xl:text-3xl uppercase tracking-wider leading-none drop-shadow-md pointer-events-none truncate text-center sm:text-left">
             INNOVATE
           </div>
-        </article>
+        </div>
 
-        {/* Center Image Card (MAIN FOCUS): BUILD - Expands from center outward */}
-        <article
+        {/* Center Image Card (MAIN FOCUS): BUILD - Expands from dead center outward */}
+        <div
           ref={centerCardRef}
-          aria-label="Build Enterprise Solutions"
           className="relative z-30 w-[72vw] sm:w-[48vw] lg:w-[44vw] max-w-[620px] h-[42vh] sm:h-[52vh] lg:h-[54vh] max-h-[520px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-zinc-200/90 flex items-center justify-center bg-zinc-950 shrink-0 group origin-center will-change-transform"
         >
           <Image
             src="/assets/images/build.png"
-            alt="Build Next-Generation Enterprise Software Studio NexxAlliance"
+            alt="Build Colorful 1920x1080"
             fill
             priority
             sizes="100vw"
@@ -172,31 +164,30 @@ export default function Herosection() {
             ref={cardTextRef}
             className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent pointer-events-none flex items-end justify-center pb-5 sm:pb-8"
           >
-            <div className="text-white font-black text-base sm:text-3xl lg:text-4xl uppercase tracking-wider leading-none drop-shadow-lg">
+            <div className="text-white font-black text-base sm:text-2xl xl:text-3xl uppercase tracking-wider leading-none drop-shadow-lg">
               BUILD
             </div>
           </div>
-        </article>
+        </div>
 
         {/* Right Image Card: TRANSFORM */}
-        <article
+        <div
           ref={rightCardRef}
-          aria-label="Transform Enterprise Workflows"
           className="relative z-10 w-[28vw] sm:w-[22vw] lg:w-[20vw] max-w-[280px] h-[38vh] sm:h-[48vh] lg:h-[50vh] max-h-[460px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border border-zinc-200/90 group shrink-0"
         >
           <Image
             src="/assets/images/transform.jpg"
-            alt="Transform Business Operations NexxAlliance"
+            alt="Transform NexAlliance"
             fill
             priority
             sizes="(max-width: 640px) 30vw, (max-width: 1024px) 22vw, 280px"
             className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
           />
-          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
-          <div className="absolute bottom-3 sm:bottom-6 left-2 sm:left-6 right-2 sm:right-6 text-white font-black text-xs sm:text-3xl lg:text-4xl uppercase tracking-wider leading-none drop-shadow-md pointer-events-none truncate text-center sm:text-left">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+          <div className="absolute bottom-3 sm:bottom-6 left-2 sm:left-6 right-2 sm:right-6 text-white font-black text-xs  sm:text-2xl xl:text-3xl  uppercase tracking-wider leading-none drop-shadow-md pointer-events-none truncate text-center sm:text-left">
             TRANSFORM
           </div>
-        </article>
+        </div>
 
       </div>
 

@@ -19,30 +19,30 @@ const geistMono = Geist_Mono({
 export const metadata = {
   metadataBase: new URL("https://nexallianceit.com"),
   title: {
-    default: "NexxAlliance - Enterprise Digital Transformation & Software Studio",
-    template: "%s | NexxAlliance",
+    default: "NexAlliance - Enterprise Digital Transformation & Software Studio",
+    template: "%s | NexAlliance",
   },
   description: "Enterprise technology consulting for ERP, CRM, custom web development, cloud solutions, and AI automation.",
-  keywords: ["ERP", "CRM", "Software Studio", "Web Development", "AI Automation", "Cloud Computing", "App Development", "NexxAlliance"],
-  authors: [{ name: "NexxAlliance Digital Studio" }],
-  creator: "NexxAlliance",
-  publisher: "NexxAlliance",
+  keywords: ["ERP", "CRM", "Software Studio", "Web Development", "AI Automation", "Cloud Computing", "App Development", "NexAlliance"],
+  authors: [{ name: "NexAlliance Digital Studio" }],
+  creator: "NexAlliance",
+  publisher: "NexAlliance",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
   openGraph: {
-    title: "NexxAlliance - Enterprise Digital Transformation & Software Studio",
+    title: "NexAlliance - Enterprise Digital Transformation & Software Studio",
     description: "Enterprise technology consulting for ERP, CRM, custom web development, cloud solutions, and AI automation.",
     url: "https://nexallianceit.com",
-    siteName: "NexxAlliance",
+    siteName: "NexAlliance",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "NexxAlliance - Enterprise Software Studio",
+    title: "NexAlliance - Enterprise Software Studio",
     description: "Enterprise technology consulting for ERP, CRM, custom web development, and cloud platforms.",
   },
   robots: {
@@ -69,7 +69,7 @@ export const viewport = {
 const jsonLdSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "NexxAlliance",
+  name: "NexAlliance",
   url: "https://nexallianceit.com",
   logo: "https://nexallianceit.com/favicon.ico",
   description: "Enterprise digital transformation, custom ERP, CRM, cloud architecture, and AI automation studio.",
@@ -92,12 +92,42 @@ export default function RootLayout({ children }) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased overflow-x-hidden`}
     >
       <head>
+        {/* Instant Non-Flashing Critical Fallback Preloader Overlay */}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              #initial-loader {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                width: 100vw;
+                height: 100vh;
+                z-index: 9999999;
+                background-color: #f8fafc;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+              }
+            `,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchema) }}
         />
       </head>
       <body className="min-h-full flex flex-col relative bg-white text-zinc-900 overflow-x-hidden w-full">
+        {/* Static HTML preloader overlay visible before JS hydration */}
+        <div id="initial-loader">
+          <img
+            src="/assets/images/logo.png"
+            alt="NexAlliance Logo"
+            style={{ height: "64px", width: "auto", objectFit: "contain" }}
+          />
+        </div>
         <BookPreloader />
         <Navbar />
         <main className="flex-1 overflow-x-hidden w-full">{children}</main>

@@ -15,7 +15,7 @@ const testimonialsData = [
     date: 'OCT 24, 2025',
     services: ['AI Integration', 'Cloud Architecture'],
     quote:
-      'NexxAlliance transformed our legacy systems into a high-concurrency cloud powerhouse. Their attention to system architecture and UI motion physics is unmatched in the engineering industry.',
+      'NexAlliance transformed our legacy systems into a high-concurrency cloud powerhouse. Their attention to system architecture and UI motion physics is unmatched in the engineering industry.',
   },
   {
     id: 2,
@@ -26,7 +26,7 @@ const testimonialsData = [
     date: 'NOV 12, 2025',
     services: ['ERP Systems', 'Task Automation'],
     quote:
-      'The custom ERP solution delivered by NexxAlliance streamlined our hotel operations across 14 locations. Real-time telemetry and staff scheduling automation increased efficiency by 40%.',
+      'The custom ERP solution delivered by NexAlliance streamlined our hotel operations across 14 locations. Real-time telemetry and staff scheduling automation increased efficiency by 40%.',
   },
   {
     id: 3,
@@ -37,7 +37,7 @@ const testimonialsData = [
     date: 'DEC 05, 2025',
     services: ['3D WebGL', 'Web Development'],
     quote:
-      'Our 3D interactive web ecosystem achieved viral traction within 48 hours of launch. NexxAlliance engineered 60FPS WebGL animations without compromising page load speeds.',
+      'Our 3D interactive web ecosystem achieved viral traction within 48 hours of launch. NexAlliance engineered 60FPS WebGL animations without compromising page load speeds.',
   },
   {
     id: 4,
@@ -48,7 +48,7 @@ const testimonialsData = [
     date: 'JAN 18, 2026',
     services: ['B2B Portal', 'Catalog Admin'],
     quote:
-      'Working with NexxAlliance was a game changer for our chemical manufacturing brand. Their B2B inquiry system and custom admin panel solved our order pipeline bottleneck.',
+      'Working with NexAlliance was a game changer for our chemical manufacturing brand. Their B2B inquiry system and custom admin panel solved our order pipeline bottleneck.',
   },
 ];
 
@@ -110,7 +110,7 @@ export default function OurTestimonial() {
               transition={{ delay: 0.2 }}
               className="mt-4 text-xs sm:text-sm text-zinc-600 font-medium leading-relaxed max-w-sm"
             >
-              Discover how enterprise leaders scale digital products, optimize operations, and achieve rapid ROI with NexxAlliance engineering.
+              Discover how enterprise leaders scale digital products, optimize operations, and achieve rapid ROI with NexAlliance engineering.
             </motion.p>
 
             {/* Overall Rating Pill */}

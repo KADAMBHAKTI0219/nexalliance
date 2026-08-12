@@ -383,7 +383,7 @@ export default function Navbar({ items }) {
                 <Link href="/" className="hidden sm:flex items-center pl-1 pr-1 shrink-0 group">
                     <img 
                         src="/assets/images/logo.png" 
-                        alt="NexxAlliance Logo" 
+                        alt="NexAlliance Logo" 
                         className="h-7 sm:h-8 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
                     />
                 </Link>
