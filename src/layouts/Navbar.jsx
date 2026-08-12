@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import gsap from "gsap";
-import { Home, User, Briefcase, FolderKanban, Mail } from 'lucide-react';
+import { Home, User, Briefcase, FolderKanban, Mail, Send } from 'lucide-react';
 
 // Register MorphSVGPlugin if available in client environment
 if (typeof window !== "undefined") {
@@ -17,7 +17,7 @@ if (typeof window !== "undefined") {
                 gsap.registerPlugin(plugin.MorphSVGPlugin);
             }
         }).catch(e => {
-            console.warn("GSAP MorphSVGPlugin not found. Morphing animations will fall back gracefully.", e);
+            console.warn("GSAP MorphSVGPlugin not found.", e);
         });
     } catch (e) {
         console.warn("GSAP MorphSVGPlugin error:", e);
@@ -185,21 +185,11 @@ const MorphingIcon = ({ type, isActive, onClick, onMouseEnter }) => {
     return null;
 };
 
-// Floating GlassDock Component
+// Adaptive GlassDock Component: Pure Icons on Mobile, Icon + Name Underneath on Desktop (md+)
 const GlassDock = React.forwardRef(
     ({ className, items = [], dockClassName, ...props }, ref) => {
         const pathname = usePathname();
         const [hoveredIndex, setHoveredIndex] = useState(null);
-        const [direction, setDirection] = useState(0);
-
-        const handleMouseEnter = (index) => {
-            if (hoveredIndex !== null && index !== hoveredIndex) {
-                setDirection(index > hoveredIndex ? 1 : -1);
-            }
-            setHoveredIndex(index);
-        };
-
-        const getTooltipPosition = (index) => index * 44 - 10;
 
         const handleNavClick = (e, item) => {
             const targetHref = item.href || '#';
@@ -227,79 +217,16 @@ const GlassDock = React.forwardRef(
             >
                 <div
                     className={cn(
-                        "glass-dock relative flex gap-1.5 sm:gap-2.5 items-center px-1 sm:px-2.5 py-1 sm:py-1.5 rounded-2xl overflow-visible justify-center shrink-0",
+                        "glass-dock relative flex gap-1 sm:gap-2.5 md:gap-3.5 items-center px-1 sm:px-2 py-1 rounded-2xl overflow-visible justify-center shrink-0",
                         dockClassName
                     )}
-                    onMouseLeave={() => {
-                        setHoveredIndex(null);
-                        setDirection(0);
-                    }}
+                    onMouseLeave={() => setHoveredIndex(null)}
                 >
-                    {/* Tooltip Popup (Desktop Only) */}
-                    <AnimatePresence>
-                        {hoveredIndex !== null && items[hoveredIndex] && (
-                            <motion.div
-                                layout
-                                initial={{ opacity: 0, scale: 0.9, y: 0 }}
-                                animate={{
-                                    opacity: 1,
-                                    scale: 1,
-                                    y: -52,
-                                    x: getTooltipPosition(hoveredIndex),
-                                }}
-                                exit={{ opacity: 0, scale: 0.9, y: 0 }}
-                                transition={{ type: 'spring', stiffness: 150, damping: 18 }}
-                                className="absolute top-0 left-0 pointer-events-none z-50 hidden sm:block"
-                            >
-                                <div
-                                    className={cn(
-                                        'px-3.5 py-1.5 rounded-xl',
-                                        'bg-[#25294a] text-white',
-                                        'shadow-2xl flex items-center justify-center',
-                                        'border border-[#3b5da6]/30',
-                                        'min-w-[85px]'
-                                    )}
-                                >
-                                    <div className="relative h-4 flex items-center justify-center overflow-hidden w-full">
-                                        <AnimatePresence mode="popLayout" custom={direction}>
-                                            <motion.span
-                                                key={items[hoveredIndex].title}
-                                                custom={direction}
-                                                initial={{
-                                                    x: direction > 0 ? 25 : -25,
-                                                    opacity: 0,
-                                                    filter: 'blur(4px)',
-                                                }}
-                                                animate={{
-                                                    x: 0,
-                                                    opacity: 1,
-                                                    filter: 'blur(0px)',
-                                                }}
-                                                exit={{
-                                                    x: direction > 0 ? -25 : 25,
-                                                    opacity: 0,
-                                                    filter: 'blur(4px)',
-                                                }}
-                                                transition={{
-                                                    duration: 0.2,
-                                                    ease: 'easeOut',
-                                                }}
-                                                className="text-[11px] font-extrabold tracking-wide whitespace-nowrap"
-                                            >
-                                                {items[hoveredIndex].title}
-                                            </motion.span>
-                                        </AnimatePresence>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
-
-                    {/* Nav Item Icons */}
+                    {/* Navigation Buttons: Pure Icon on Mobile, Icon + Name Underneath on md+ */}
                     {items.map((el, index) => {
                         const Icon = el.icon;
                         const isHovered = hoveredIndex === index;
-                        const isRouteActive = pathname === el.href || (pathname === '/' && el.href === '/') || (pathname === '/about' && el.href === '/about');
+                        const isRouteActive = pathname === el.href || (pathname === '/' && el.href === '/') || (pathname === '/about' && el.href === '/about') || (pathname === '/portfolio' && el.href === '/portfolio') || (pathname === '/contact-us' && el.href === '/contact-us');
                         const isActive = isHovered || isRouteActive;
 
                         const type = el.title ? el.title.toLowerCase() : '';
@@ -310,37 +237,52 @@ const GlassDock = React.forwardRef(
                                 key={el.title || index}
                                 href={el.href || '#'}
                                 onClick={(e) => handleNavClick(e, el)}
-                                onMouseEnter={() => handleMouseEnter(index)}
-                                className="relative w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center cursor-pointer select-none shrink-0"
+                                onMouseEnter={() => setHoveredIndex(index)}
+                                className="relative px-1.5 xs:px-2 md:px-3 py-1 rounded-xl transition-all duration-300 cursor-pointer select-none group shrink-0"
                             >
                                 <motion.div
-                                    whileTap={{ scale: 0.92 }}
+                                    whileTap={{ scale: 0.94 }}
                                     animate={{
-                                        scale: isHovered ? 1.15 : 1,
+                                        scale: isHovered ? 1.08 : 1,
                                         y: isHovered ? -2 : 0,
                                     }}
-                                    transition={{ type: 'spring', stiffness: 300, damping: 24 }}
-                                    className="relative flex items-center justify-center"
+                                    transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+                                    className="flex flex-col items-center justify-center gap-0.5"
                                 >
-                                    {isAnimated ? (
-                                        <MorphingIcon
-                                            type={type}
-                                            isActive={isActive}
-                                            onClick={() => {}}
-                                            onMouseEnter={() => {}}
-                                        />
-                                    ) : Icon ? (
-                                        <Icon
-                                            className={cn(
-                                                'h-4 w-4 sm:h-5 sm:w-5 transition-colors duration-200',
-                                                isRouteActive
-                                                    ? 'text-[#3b5da6]'
-                                                    : isHovered
-                                                    ? 'text-[#3b5da6]'
-                                                    : 'text-[#25294a]'
-                                            )}
-                                        />
-                                    ) : null}
+                                    {/* Icon Container */}
+                                    <div className="w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center shrink-0">
+                                        {isAnimated ? (
+                                            <MorphingIcon
+                                                type={type}
+                                                isActive={isActive}
+                                                onClick={() => {}}
+                                                onMouseEnter={() => {}}
+                                            />
+                                        ) : Icon ? (
+                                            <Icon
+                                                className={cn(
+                                                    'h-4 w-4 sm:h-5 sm:w-5 transition-colors duration-200',
+                                                    isRouteActive
+                                                        ? 'text-[#3b5da6]'
+                                                        : isHovered
+                                                        ? 'text-[#3b5da6]'
+                                                        : 'text-[#25294a]'
+                                                )}
+                                            />
+                                        ) : null}
+                                    </div>
+
+                                    {/* Text Label Directly Underneath Icon (Visible ONLY on Desktop md: and above) */}
+                                    <span
+                                        className={cn(
+                                            'hidden md:block text-[10px] font-black font-sans uppercase tracking-wider transition-colors duration-200 leading-none mt-0.5',
+                                            isActive
+                                                ? 'text-[#3b5da6]'
+                                                : 'text-[#25294a]/85 group-hover:text-[#3b5da6]'
+                                        )}
+                                    >
+                                        {el.title}
+                                    </span>
 
                                     {/* Active Route Glow Dot */}
                                     {isRouteActive && (
@@ -363,8 +305,6 @@ const GlassDock = React.forwardRef(
 GlassDock.displayName = 'GlassDock';
 
 export default function Navbar({ items }) {
-    const pathname = usePathname();
-
     const defaultItems = [
         { title: "Home", icon: Home, href: "/#hero" },
         { title: "Services", icon: Briefcase, href: "/#services" },
@@ -376,35 +316,37 @@ export default function Navbar({ items }) {
     const dockItems = items || defaultItems;
 
     return (
-        <header className="fixed bottom-3 sm:bottom-6 left-0 right-0 z-50 flex justify-center px-3 pointer-events-none">
-            <div className="pointer-events-auto flex items-center gap-2 sm:gap-3 px-3 sm:px-5 py-2 sm:py-2.5 rounded-2xl bg-white/95 border border-zinc-200/90 shadow-2xl shadow-[#25294a]/15 backdrop-blur-xl shrink-0">
+        <header className="fixed bottom-3 sm:bottom-6 left-0 right-0 z-50 flex justify-center px-2 sm:px-3 pointer-events-none">
+            {/* Adaptive Floating Glass Dock: Mobile = Compact Icons, Desktop = Icon + Label Underneath */}
+            <div className="pointer-events-auto max-w-[calc(100vw-16px)] flex items-center justify-between sm:justify-center gap-2 xs:gap-3 sm:gap-5 px-3 xs:px-4 sm:px-6 py-2 sm:py-2.5 rounded-full bg-white/95 border border-zinc-200/90 shadow-2xl shadow-[#25294a]/20 backdrop-blur-2xl shrink-0 mx-auto">
                 
-                {/* Left Logo (Visible on desktop/tablet sm+, hidden on mobile to guarantee perfect dock centering) */}
-                <Link href="/" className="hidden sm:flex items-center pl-1 pr-1 shrink-0 group">
+                {/* NexAlliance Brand Logo */}
+                <Link href="/" className="flex items-center pl-1 pr-1 shrink-0 group">
                     <img 
                         src="/assets/images/logo.png" 
                         alt="NexAlliance Logo" 
-                        className="h-7 sm:h-8 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
+                        className="h-7 xs:h-8 sm:h-10 md:h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
                     />
                 </Link>
 
-                {/* Vertical Divider (Desktop/tablet sm+) */}
-                <div className="hidden sm:block h-6 w-[1px] bg-zinc-200 shrink-0 mx-0.5" />
+                {/* Vertical Divider */}
+                <div className="h-6 sm:h-9 w-[1px] bg-zinc-200 shrink-0 mx-0.5 sm:mx-1" />
 
-                {/* Glass Dock (5 Icons) */}
+                {/* Glass Dock */}
                 <GlassDock items={dockItems} className="shrink-0" />
 
                 {/* Vertical Divider */}
-                <div className="h-4 sm:h-6 w-[1px] bg-zinc-200 shrink-0 mx-0.5" />
+                <div className="h-6 sm:h-9 w-[1px] bg-zinc-200 shrink-0 mx-0.5 sm:mx-1" />
 
-                {/* Contact Us CTA Button */}
+                {/* Responsive Contact CTA Button */}
                 <Link
                     href="/contact-us"
-                    className="shrink-0 px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-xl bg-gradient-to-r from-[#3b5da6] to-[#25294a] hover:from-[#2e4b8a] hover:to-[#1d203b] text-white text-[10px] sm:text-xs font-black uppercase tracking-wider shadow-lg shadow-[#3b5da6]/25 hover:shadow-[#3b5da6]/40 transition-all duration-300 hover:scale-105 active:scale-95 whitespace-nowrap"
+                    className="shrink-0 p-2 sm:px-5 sm:py-2.5 rounded-full bg-gradient-to-r from-[#3b5da6] to-[#25294a] hover:from-[#2e4b8a] hover:to-[#1d203b] text-white text-xs font-black uppercase tracking-wider shadow-lg shadow-[#3b5da6]/30 hover:shadow-[#3b5da6]/45 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-1.5 whitespace-nowrap"
                 >
-                    <span className="hidden xs:inline">Contact Us</span>
-                    <span className="xs:hidden">Contact</span>
+                    <Send className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white shrink-0" />
+                    <span className="hidden sm:inline">Contact</span>
                 </Link>
+
             </div>
         </header>
     );

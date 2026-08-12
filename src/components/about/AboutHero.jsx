@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 
 export default function AboutHero() {
   return (
-    <section className="relative bg-white text-zinc-900 pt-16 sm:pt-8 pb-8 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative bg-white text-[#25294a] pt-16 sm:pt-8 pb-8 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="max-w-7xl mx-auto">
 
         {/* Display Title: About Us */}
@@ -14,9 +14,9 @@ export default function AboutHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-5xl sm:text-7xl md:text-[110px] lg:text-[140px] font-black tracking-tighter text-zinc-900 leading-none select-none font-sans"
+          className="text-5xl sm:text-7xl md:text-[110px] lg:text-[140px] font-black tracking-tighter text-[#25294a] leading-none select-none font-sans"
         >
-          About Us
+          About <span className="text-[#3b5da6]">Us.</span>
         </motion.h1>
 
         {/* Full-width Hero Banner Image */}
@@ -28,7 +28,7 @@ export default function AboutHero() {
         >
           <Image
             src="/assets/images/about_hero_tech.png"
-            alt="Nex Alliance About Us"
+            alt="NexAlliance Enterprise Technology Studio"
             fill
             priority
             sizes="(max-width: 1280px) 100vw, 1280px"

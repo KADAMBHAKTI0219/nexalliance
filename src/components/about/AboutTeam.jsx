@@ -18,7 +18,7 @@ const leaders = [
     badgeText: 'HEAD OF SALES',
     description: 'Driving revenue growth through strategic client relationships, market expansion, and result-oriented sales engineering.',
     image: '/assets/images/meet_founder.jpeg',
-    badgeGradient: 'from-blue-600 via-cyan-500 to-blue-600',
+    badgeGradient: 'from-[#3b5da6] to-[#25294a]',
     icon: TrendingUp,
     linkedin: 'https://linkedin.com',
     email: 'mailto:contact@nexallianceit.com',
@@ -29,7 +29,7 @@ const leaders = [
     badgeText: 'HEAD OF TECHNOLOGY',
     description: 'Leading technology innovation and transforming complex business requirements into scalable digital solutions.',
     image: '/assets/images/sanket_founder.jpeg',
-    badgeGradient: 'from-cyan-500 via-blue-600 to-indigo-600',
+    badgeGradient: 'from-[#25294a] to-[#3b5da6]',
     icon: Code,
     linkedin: 'https://linkedin.com',
     email: 'mailto:tech@nexallianceit.com',
@@ -38,17 +38,17 @@ const leaders = [
 
 export default function AboutTeam() {
   return (
-    <section className="relative bg-white text-zinc-900 py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-t border-zinc-100 select-none">
+    <section className="relative bg-white text-[#25294a] py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-t border-zinc-100 select-none">
       <div className="max-w-7xl mx-auto">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-600 text-xs font-bold tracking-[0.2em] uppercase mb-4 shadow-sm">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#3b5da6]/10 border border-[#3b5da6]/20 text-[#3b5da6] text-xs font-bold tracking-[0.2em] uppercase mb-4 shadow-sm">
             <span>LEADERSHIP</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-black text-zinc-900 tracking-tight font-sans">
+          <h2 className="text-3xl sm:text-5xl font-black text-[#25294a] tracking-tight font-sans">
             Meet The People Behind <br />
-            <span className="text-blue-600">Nex Alliance.</span>
+            <span className="text-[#3b5da6]">NexAlliance.</span>
           </h2>
           <p className="mt-4 text-base sm:text-lg text-zinc-600">
             Hover over the founder cards below to reveal detailed leadership profiles and expertise.
@@ -72,7 +72,7 @@ export default function AboutTeam() {
                 <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] rounded-[32px]">
                   
                   {/* ================= FRONT SIDE (PERFECT PHOTO + ELEGANT TOP BADGE) ================= */}
-                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] rounded-[32px] overflow-hidden border border-zinc-200 shadow-xl bg-zinc-900">
+                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] rounded-[32px] overflow-hidden border border-zinc-200 shadow-xl bg-[#25294a]">
                     <Image
                       src={leader.image}
                       alt={leader.name}
@@ -83,11 +83,11 @@ export default function AboutTeam() {
                     />
 
                     {/* Gradient Overlay for Text Clarity */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/95 via-zinc-950/30 to-zinc-950/20" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#25294a]/95 via-[#25294a]/30 to-transparent" />
 
                     {/* Top Left Floating Elegant Role Badge */}
                     <div className="absolute top-5 left-5 z-10">
-                      <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r ${leader.badgeGradient} text-white text-xs font-black uppercase tracking-wider shadow-xl shadow-blue-600/30 border border-white/25 backdrop-blur-md`}>
+                      <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r ${leader.badgeGradient} text-white text-xs font-black uppercase tracking-wider shadow-xl shadow-[#3b5da6]/30 border border-white/25 backdrop-blur-md`}>
                         <RoleIcon className="w-3.5 h-3.5" />
                         <span>{leader.badgeText}</span>
                       </div>
@@ -99,7 +99,7 @@ export default function AboutTeam() {
                         <h3 className="text-2xl sm:text-3xl font-black text-white font-sans tracking-tight leading-none">
                           {leader.name}
                         </h3>
-                        <p className="text-xs font-black text-cyan-300 uppercase tracking-widest mt-1.5">
+                        <p className="text-xs font-black text-blue-300 uppercase tracking-widest mt-1.5">
                           CO-FOUNDER & DIRECTOR
                         </p>
                       </div>
@@ -112,17 +112,16 @@ export default function AboutTeam() {
                   </div>
 
                   {/* ================= BACK SIDE (DETAILS ON FLIP) ================= */}
-                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] bg-gradient-to-br from-zinc-900 via-zinc-950 to-black text-white rounded-[32px] p-8 sm:p-10 flex flex-col justify-between border border-zinc-800 shadow-2xl relative overflow-hidden">
+                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] bg-gradient-to-br from-[#191d38] via-[#25294a] to-[#1e3a8a] text-white rounded-[32px] p-8 sm:p-10 flex flex-col justify-between border border-[#3b5da6]/30 shadow-2xl relative overflow-hidden">
                     
                     {/* Ambient Decorative Back Glow */}
-                    <div className="absolute top-0 right-0 w-56 h-56 bg-blue-600/20 rounded-full blur-3xl pointer-events-none" />
-                    <div className="absolute bottom-0 left-0 w-56 h-56 bg-cyan-500/20 rounded-full blur-3xl pointer-events-none" />
+                    <div className="absolute top-0 right-0 w-56 h-56 bg-[#3b5da6]/20 rounded-full blur-3xl pointer-events-none" />
 
                     <div className="flex-1 flex flex-col justify-between">
                       
                       {/* Top Header: Role Icon */}
                       <div className="flex items-center justify-between">
-                        <div className="p-3.5 rounded-2xl bg-white/10 text-cyan-400 border border-white/10 backdrop-blur-md">
+                        <div className="p-3.5 rounded-2xl bg-white/10 text-white border border-white/10 backdrop-blur-md">
                           <RoleIcon className="w-6 h-6" />
                         </div>
                       </div>
@@ -132,7 +131,7 @@ export default function AboutTeam() {
                         <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white font-sans tracking-tight leading-none">
                           {leader.name}
                         </h3>
-                        <p className="text-sm sm:text-base font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-300 uppercase tracking-widest mt-2 mb-4">
+                        <p className="text-sm sm:text-base font-black text-blue-300 uppercase tracking-widest mt-2 mb-4">
                           CO-FOUNDER & DIRECTOR
                         </p>
 
@@ -143,7 +142,7 @@ export default function AboutTeam() {
 
                         {/* Solid Gradient Pill Badge Directly Below Description */}
                         <div>
-                          <span className={`inline-block px-5 py-2 rounded-full bg-gradient-to-r ${leader.badgeGradient} text-white text-xs font-black uppercase tracking-wider shadow-lg shadow-blue-500/25`}>
+                          <span className={`inline-block px-5 py-2 rounded-full bg-gradient-to-r ${leader.badgeGradient} text-white text-xs font-black uppercase tracking-wider shadow-lg shadow-[#3b5da6]/25`}>
                             {leader.badgeText}
                           </span>
                         </div>
@@ -155,14 +154,14 @@ export default function AboutTeam() {
                           href={leader.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-3.5 rounded-2xl bg-white/10 hover:bg-blue-600 text-white transition-all transform hover:scale-110 flex items-center justify-center border border-white/10 shadow-md"
+                          className="p-3.5 rounded-2xl bg-white/10 hover:bg-[#3b5da6] text-white transition-all transform hover:scale-110 flex items-center justify-center border border-white/10 shadow-md"
                           title="LinkedIn Profile"
                         >
                           <LinkedInIcon />
                         </a>
                         <a
                           href={leader.email}
-                          className="p-3.5 rounded-2xl bg-white/10 hover:bg-cyan-600 text-white transition-all transform hover:scale-110 flex items-center justify-center border border-white/10 shadow-md"
+                          className="p-3.5 rounded-2xl bg-white/10 hover:bg-[#3b5da6] text-white transition-all transform hover:scale-110 flex items-center justify-center border border-white/10 shadow-md"
                           title="Send Email"
                         >
                           <Mail className="w-5 h-5" />

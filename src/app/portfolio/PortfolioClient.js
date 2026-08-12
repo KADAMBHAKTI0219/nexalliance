@@ -1,70 +1,63 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
+import Navbar from '@/layouts/Navbar';
+import Footer from '@/layouts/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, ArrowUpRight, ArrowRight, Terminal } from 'lucide-react';
+import { Sparkles, ArrowUpRight, ArrowLeft, Terminal, Layout } from 'lucide-react';
+import Link from 'next/link';
 import { portfolioProjects } from '@/data/portfolioProjects';
-import ProjectModal from './ProjectModal';
+import ProjectModal from '@/components/home/ProjectModal';
 
-export const projectsData = portfolioProjects;
-
-export default function OurProjects() {
+export default function PortfolioClient() {
   const [selectedProject, setSelectedProject] = useState(null);
 
   return (
-    <section 
-      id="projects" 
-      role="region"
-      aria-labelledby="projects-heading"
-      className="relative py-20 sm:py-28 bg-[#070913] text-white overflow-hidden select-none border-t border-white/10"
-    >
-      {/* Stripe-Style Background Ambient Gradient Glows */}
-      <div 
-        aria-hidden="true" 
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[90vw] max-w-[1100px] h-[500px] bg-gradient-to-tr from-[#3b5da6]/20 via-[#6366f1]/10 to-transparent rounded-full blur-[140px] pointer-events-none -z-10 transform-gpu" 
-      />
+    <div className="min-h-screen bg-[#070913] text-white flex flex-col font-sans select-none">
+      <Navbar />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 w-full">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#3b5da6]/20 border border-[#3b5da6]/40 text-[#38bdf8] text-xs font-extrabold tracking-[0.25em] uppercase mb-4 shadow-xs"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-[#38bdf8]" aria-hidden="true" />
-            <span>FEATURED PORTFOLIO PROJECTS</span>
-          </motion.div>
+      <main className="flex-1 pt-32 pb-24 relative overflow-hidden">
+        {/* Stripe-Style Background Ambient Gradient Glows */}
+        <div 
+          aria-hidden="true" 
+          className="absolute top-10 left-1/2 -translate-x-1/2 w-[90vw] max-w-[1200px] h-[600px] bg-gradient-to-tr from-[#3b5da6]/20 via-[#6366f1]/10 to-transparent rounded-full blur-[140px] pointer-events-none -z-10" 
+        />
+        <div 
+          aria-hidden="true" 
+          className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-[#38bdf8]/10 rounded-full blur-[160px] pointer-events-none -z-10" 
+        />
 
-          <motion.h2
-            id="projects-heading"
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight font-sans leading-tight"
-          >
-            Our Featured <span className="bg-gradient-to-r from-[#38bdf8] via-[#6366f1] to-[#3b5da6] bg-clip-text text-transparent">Projects.</span>
-          </motion.h2>
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 w-full">
+          
+          {/* Header & Back Link */}
+          <div className="mb-14">
+            <Link 
+              href="/" 
+              className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#38bdf8] hover:text-white transition-colors mb-6 group"
+            >
+              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+              <span>Back to Home</span>
+            </Link>
 
-          <motion.p
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="mt-4 text-sm sm:text-base lg:text-lg text-zinc-400 font-medium leading-relaxed"
-          >
-            Explore our enterprise projects built to solve real business challenges — click any project card to view its interactive case study & full system screenshots.
-          </motion.p>
-        </div>
+            <div className="flex flex-col items-start gap-3">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#3b5da6]/20 border border-[#3b5da6]/40 text-[#38bdf8] text-xs font-extrabold tracking-[0.25em] uppercase shadow-xs">
+                <Sparkles className="w-3.5 h-3.5 text-[#38bdf8]" />
+                <span>COMPLETE ENTERPRISE PORTFOLIO ({portfolioProjects.length} PROJECTS)</span>
+              </span>
 
-        {/* Stripe-Style Ultra-Modern High-End Portfolio Card Grid */}
-        <div className="w-full">
+              <h1 className="text-4xl sm:text-6xl font-black text-white tracking-tight font-sans">
+                Our Work & <span className="bg-gradient-to-r from-[#38bdf8] via-[#6366f1] to-[#3b5da6] bg-clip-text text-transparent">Case Studies.</span>
+              </h1>
+
+              <p className="text-base sm:text-lg text-zinc-400 font-medium max-w-2xl leading-relaxed mt-1">
+                Explore our full portfolio of enterprise software applications — click any project card to view its interactive case study & full system screenshots.
+              </p>
+            </div>
+          </div>
+
+          {/* Stripe-Style Ultra-Modern High-End Portfolio Card Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {portfolioProjects.slice(0, 9).map((project, idx) => {
+            {portfolioProjects.map((project, idx) => {
               const hasImage = Boolean(project.image);
 
               return (
@@ -75,7 +68,7 @@ export default function OurProjects() {
                   viewport={{ once: true, amount: 0.15 }}
                   transition={{
                     duration: 0.4,
-                    delay: (idx % 3) * 0.07,
+                    delay: (idx % 3) * 0.06,
                     ease: [0.215, 0.61, 0.355, 1.0],
                   }}
                   onClick={() => setSelectedProject(project)}
@@ -181,7 +174,7 @@ export default function OurProjects() {
                         </span>
 
                         <div className="w-8 h-8 rounded-full bg-white/10 text-white group-hover:bg-[#38bdf8] group-hover:text-[#070913] transition-all duration-300 flex items-center justify-center shadow-md">
-                          <ArrowUpRight className="w-4 h-4 group-hover:rotate-45 transition-transform duration-300" aria-hidden="true" />
+                          <ArrowUpRight className="w-4 h-4 group-hover:rotate-45 transition-transform duration-300" />
                         </div>
                       </div>
 
@@ -193,24 +186,12 @@ export default function OurProjects() {
             })}
           </div>
 
-          {/* View More Portfolio Link Button */}
-          <div className="mt-14 flex justify-center">
-            <Link href="/portfolio" aria-label="Explore all portfolio projects in our full portfolio">
-              <motion.div
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.96 }}
-                className="px-8 py-4 rounded-2xl bg-gradient-to-r from-[#3b5da6] via-[#6366f1] to-[#38bdf8] text-white font-extrabold text-xs sm:text-sm uppercase tracking-wider shadow-2xl shadow-[#3b5da6]/30 transition-all duration-300 flex items-center gap-3 cursor-pointer"
-              >
-                <span>View Full Enterprise Portfolio ({portfolioProjects.length} Projects)</span>
-                <ArrowRight className="w-4 h-4" aria-hidden="true" />
-              </motion.div>
-            </Link>
-          </div>
         </div>
+      </main>
 
-      </div>
+      <Footer />
 
-      {/* Showcase Modal */}
+      {/* Project Case Study Modal */}
       <AnimatePresence>
         {selectedProject && (
           <ProjectModal
@@ -219,6 +200,6 @@ export default function OurProjects() {
           />
         )}
       </AnimatePresence>
-    </section>
+    </div>
   );
 }
