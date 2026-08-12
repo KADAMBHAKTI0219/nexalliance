@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail } from 'lucide-react';
 import Link from 'next/link';
@@ -8,11 +8,14 @@ import * as THREE from 'three';
 
 export default function FooterCTA() {
   const mountRef = useRef(null);
+  const sectionRef = useRef(null);
 
-  // --- 3D THREE.JS FALLING & BOUNCING Glossy Tech Shapes / Characters Scene ---
+  // --- 3D THREE.JS FALLING & BOUNCING Glossy Tech Shapes ---
+  // Starts physics drop ONLY when section enters viewport!
   useEffect(() => {
     const container = mountRef.current;
-    if (!container) return;
+    const section = sectionRef.current;
+    if (!container || !section) return;
 
     const width = container.clientWidth;
     const height = container.clientHeight;
@@ -40,9 +43,6 @@ export default function FooterCTA() {
     scene.add(pointLight);
 
     // 3D Geometries matching Brand Palette (#3b5da6 & #25294a)
-    const shapes = [];
-
-    // 1. Brand Blue Glossy Tech Shield
     const shape1Geo = new THREE.IcosahedronGeometry(2.2, 0);
     const shape1Mat = new THREE.MeshPhysicalMaterial({
       color: 0x3b5da6,
@@ -52,10 +52,7 @@ export default function FooterCTA() {
       clearcoatRoughness: 0.1,
     });
     const shape1 = new THREE.Mesh(shape1Geo, shape1Mat);
-    shape1.position.set(-7, 14, 0);
-    scene.add(shape1);
 
-    // 2. Deep Navy Glossy Cube
     const shape2Geo = new THREE.BoxGeometry(2.4, 2.4, 2.4);
     const shape2Mat = new THREE.MeshPhysicalMaterial({
       color: 0x25294a,
@@ -64,10 +61,7 @@ export default function FooterCTA() {
       clearcoat: 1.0,
     });
     const shape2 = new THREE.Mesh(shape2Geo, shape2Mat);
-    shape2.position.set(-2, 18, 2);
-    scene.add(shape2);
 
-    // 3. Vibrant Cyan Organic Torus Knot
     const shape3Geo = new THREE.TorusKnotGeometry(1.6, 0.6, 64, 16);
     const shape3Mat = new THREE.MeshPhysicalMaterial({
       color: 0x06b6d4,
@@ -76,10 +70,7 @@ export default function FooterCTA() {
       clearcoat: 0.8,
     });
     const shape3 = new THREE.Mesh(shape3Geo, shape3Mat);
-    shape3.position.set(6, 16, -1);
-    scene.add(shape3);
 
-    // 4. Logo Steel Blue Torus Ring
     const shape4Geo = new THREE.TorusGeometry(2, 0.6, 16, 50);
     const shape4Mat = new THREE.MeshPhysicalMaterial({
       color: 0x3b5da6,
@@ -88,44 +79,76 @@ export default function FooterCTA() {
       clearcoat: 0.8,
     });
     const shape4 = new THREE.Mesh(shape4Geo, shape4Mat);
-    shape4.position.set(9, 20, 1);
+
+    scene.add(shape1);
+    scene.add(shape2);
+    scene.add(shape3);
     scene.add(shape4);
 
-    shapes.push(
-      { mesh: shape1, vy: 0, vx: 0.02, rotX: 0.02, rotY: 0.03, floor: -6, startY: 14 },
-      { mesh: shape2, vy: 0, vx: -0.01, rotX: 0.03, rotY: 0.01, floor: -6.5, startY: 18 },
-      { mesh: shape3, vy: 0, vx: 0.015, rotX: 0.01, rotY: 0.02, floor: -5.8, startY: 16 },
-      { mesh: shape4, vy: 0, vx: -0.02, rotX: 0.025, rotY: 0.015, floor: -6.2, startY: 20 }
-    );
+    const shapes = [
+      { mesh: shape1, vy: 0, vx: 0.02, initialVx: 0.02, rotX: 0.02, rotY: 0.03, floor: -6, startX: -7, startY: 16, startZ: 0 },
+      { mesh: shape2, vy: 0, vx: -0.01, initialVx: -0.01, rotX: 0.03, rotY: 0.01, floor: -6.5, startX: -2, startY: 20, startZ: 2 },
+      { mesh: shape3, vy: 0, vx: 0.015, initialVx: 0.015, rotX: 0.01, rotY: 0.02, floor: -5.8, startX: 6, startY: 18, startZ: -1 },
+      { mesh: shape4, vy: 0, vx: -0.02, initialVx: -0.02, rotX: 0.025, rotY: 0.015, floor: -6.2, startX: 9, startY: 22, startZ: 1 }
+    ];
 
-    // Physics Simulation
+    // Reset shapes to initial high positions
+    shapes.forEach((item) => {
+      item.mesh.position.set(item.startX, item.startY, item.startZ);
+    });
+
     let animationFrameId;
+    let isActive = false;
     const gravity = -0.012;
     const bounce = -0.65;
+
+    // Observer to trigger falling drop ONLY when section enters viewport
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Reset positions to high top and start dropping
+            shapes.forEach((item) => {
+              item.mesh.position.set(item.startX, item.startY, item.startZ);
+              item.vy = 0;
+              item.vx = item.initialVx;
+            });
+            isActive = true;
+          } else {
+            isActive = false;
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(section);
 
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
 
-      shapes.forEach((item) => {
-        const { mesh } = item;
+      if (isActive) {
+        shapes.forEach((item) => {
+          const { mesh } = item;
 
-        item.vy += gravity;
-        mesh.position.y += item.vy;
-        mesh.position.x += item.vx;
+          item.vy += gravity;
+          mesh.position.y += item.vy;
+          mesh.position.x += item.vx;
 
-        mesh.rotation.x += item.rotX;
-        mesh.rotation.y += item.rotY;
+          mesh.rotation.x += item.rotX;
+          mesh.rotation.y += item.rotY;
 
-        if (mesh.position.y <= item.floor) {
-          mesh.position.y = item.floor;
-          item.vy *= bounce;
-          item.vx *= 0.85;
+          if (mesh.position.y <= item.floor) {
+            mesh.position.y = item.floor;
+            item.vy *= bounce;
+            item.vx *= 0.85;
 
-          if (Math.abs(item.vy) < 0.05) {
-            item.vy = 0.04;
+            if (Math.abs(item.vy) < 0.05) {
+              item.vy = 0.04;
+            }
           }
-        }
-      });
+        });
+      }
 
       renderer.render(scene, camera);
     };
@@ -144,6 +167,7 @@ export default function FooterCTA() {
 
     return () => {
       cancelAnimationFrame(animationFrameId);
+      observer.disconnect();
       window.removeEventListener('resize', handleResize);
       if (container && renderer.domElement) {
         container.removeChild(renderer.domElement);
@@ -153,7 +177,11 @@ export default function FooterCTA() {
   }, []);
 
   return (
-    <footer id="contact" className="relative min-h-[85vh] bg-white text-[#25294a] flex flex-col justify-center items-center overflow-hidden select-none py-20 border-t border-zinc-100">
+    <footer 
+      id="contact" 
+      ref={sectionRef} 
+      className="relative min-h-[85vh] bg-white text-[#25294a] flex flex-col justify-center items-center overflow-hidden select-none py-20 border-t border-zinc-100"
+    >
       
       {/* 3D WebGL Canvas Layer */}
       <div ref={mountRef} className="absolute inset-0 z-0 pointer-events-none" />
