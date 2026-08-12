@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, ArrowUpRight, ArrowRight, Terminal } from 'lucide-react';
+import { Sparkles, ArrowUpRight, ArrowRight } from 'lucide-react';
 import { portfolioProjects } from '@/data/portfolioProjects';
 import ProjectModal from './ProjectModal';
 
@@ -17,12 +17,12 @@ export default function OurProjects() {
       id="projects" 
       role="region"
       aria-labelledby="projects-heading"
-      className="relative py-20 sm:py-28 bg-[#070913] text-white overflow-hidden select-none border-t border-white/10"
+      className="relative py-20 sm:py-28 bg-white text-[#25294a] overflow-hidden select-none border-t border-zinc-100"
     >
-      {/* Stripe-Style Background Ambient Gradient Glows */}
+      {/* Background Ambient Glow */}
       <div 
         aria-hidden="true" 
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[90vw] max-w-[1100px] h-[500px] bg-gradient-to-tr from-[#3b5da6]/20 via-[#6366f1]/10 to-transparent rounded-full blur-[140px] pointer-events-none -z-10 transform-gpu" 
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[90vw] max-w-[1100px] h-[500px] bg-gradient-to-tr from-[#3b5da6]/15 via-[#25294a]/5 to-transparent rounded-full blur-3xl pointer-events-none -z-10 transform-gpu" 
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 w-full">
@@ -33,9 +33,9 @@ export default function OurProjects() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#3b5da6]/20 border border-[#3b5da6]/40 text-[#38bdf8] text-xs font-extrabold tracking-[0.25em] uppercase mb-4 shadow-xs"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#3b5da6]/10 border border-[#3b5da6]/20 text-[#3b5da6] text-xs font-extrabold tracking-[0.25em] uppercase mb-4 shadow-xs"
           >
-            <Sparkles className="w-3.5 h-3.5 text-[#38bdf8]" aria-hidden="true" />
+            <Sparkles className="w-3.5 h-3.5 text-[#3b5da6]" aria-hidden="true" />
             <span>FEATURED PORTFOLIO PROJECTS</span>
           </motion.div>
 
@@ -45,9 +45,9 @@ export default function OurProjects() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight font-sans leading-tight"
+            className="text-3xl sm:text-5xl lg:text-6xl font-black text-[#25294a] tracking-tight font-sans leading-tight"
           >
-            Our Featured <span className="bg-gradient-to-r from-[#38bdf8] via-[#6366f1] to-[#3b5da6] bg-clip-text text-transparent">Projects.</span>
+            Our Featured <span className="text-[#3b5da6]">Projects.</span>
           </motion.h2>
 
           <motion.p
@@ -55,18 +55,17 @@ export default function OurProjects() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="mt-4 text-sm sm:text-base lg:text-lg text-zinc-400 font-medium leading-relaxed"
+            className="mt-4 text-sm sm:text-base lg:text-lg text-zinc-600 font-medium leading-relaxed"
           >
-            Explore our enterprise projects built to solve real business challenges — click any project card to view its interactive case study & full system screenshots.
+            Explore our enterprise projects built to solve real business challenges — click any project to view its case study & interactive system screenshots.
           </motion.p>
         </div>
 
-        {/* Stripe-Style Ultra-Modern High-End Portfolio Card Grid */}
+        {/* Unique High-End Minimalist Glass Card Grid Layout */}
         <div className="w-full">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {portfolioProjects.slice(0, 9).map((project, idx) => {
-              const hasImage = Boolean(project.image);
-
+              const formattedIndex = (idx + 1).toString().padStart(2, '0');
               return (
                 <motion.article
                   key={project.id}
@@ -90,101 +89,39 @@ export default function OurProjects() {
                   aria-label={`View project details for ${project.title}`}
                   className="group cursor-pointer flex flex-col will-change-transform transform-gpu focus:outline-none"
                 >
-                  {/* --- STRIPE-INSPIRED HIGH-END CARD CONTAINER --- */}
-                  <div className="relative w-full rounded-[28px] overflow-hidden border border-white/10 bg-[#0c0f1d] hover:border-[#3b5da6]/70 shadow-2xl hover:shadow-[#3b5da6]/20 transition-all duration-500 transform-gpu group-hover:-translate-y-2 flex flex-col justify-between h-[360px] sm:h-[390px]">
+                  {/* --- UNIQUE HIGH-END GLASS CARD SURFACE --- */}
+                  <div className="relative w-full h-[230px] sm:h-[260px] rounded-[32px] overflow-hidden border border-white/15 shadow-xl group-hover:shadow-2xl group-hover:shadow-[#3b5da6]/25 group-hover:border-[#3b5da6]/70 bg-gradient-to-br from-[#191d38] via-[#232746] to-[#14172f] p-6 sm:p-8 text-white flex flex-col justify-between transition-all duration-500 transform-gpu group-hover:-translate-y-1.5">
                     
-                    {/* Top App Preview Window / Telemetry Header Surface */}
-                    <div className="relative w-full h-[180px] sm:h-[200px] bg-gradient-to-b from-[#131930] to-[#0c0f1d] border-b border-white/10 overflow-hidden p-3 flex flex-col">
-                      
-                      {/* Window Controls Bar */}
-                      <div className="flex items-center justify-between mb-2.5 px-1 shrink-0">
-                        <div className="flex items-center gap-1.5">
-                          <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block" />
-                          <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block" />
-                          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block" />
-                        </div>
-                        <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest truncate max-w-[150px]">
-                          {project.id}.app
-                        </span>
+                    {/* Background Pattern Mesh & Ambient Glow */}
+                    <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(#3b5da6_1px,transparent_1px)] [background-size:20px_20px] opacity-15 pointer-events-none" />
+                    <div aria-hidden="true" className="absolute top-0 right-0 w-64 h-64 bg-[#3b5da6]/25 rounded-full blur-3xl pointer-events-none group-hover:bg-[#3b5da6]/45 transition-all duration-500" />
+
+                    {/* Top Row: Initial Emblem + Project Index Badge + Action Arrow */}
+                    <div className="relative z-10 flex items-center justify-between">
+                      <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#3b5da6]/40 via-white/10 to-transparent border border-white/20 text-white font-black text-lg flex items-center justify-center font-mono shadow-md group-hover:scale-110 group-hover:border-[#3b5da6] group-hover:bg-[#3b5da6] transition-all duration-300">
+                        {project.title.charAt(0)}
                       </div>
 
-                      {/* Mockup Preview Area */}
-                      <div className="relative flex-1 w-full rounded-xl overflow-hidden border border-white/10 bg-[#070913]">
-                        {hasImage ? (
-                          <img
-                            src={project.image}
-                            alt={`${project.title} Preview`}
-                            className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
-                          />
-                        ) : (
-                          /* Stripe-Style Generative Code & Telemetry Mesh for Text Projects */
-                          <div className="w-full h-full bg-gradient-to-br from-[#131a36] via-[#1b254b] to-[#070913] p-4 flex flex-col justify-between relative overflow-hidden">
-                            <div className="absolute -right-6 -bottom-6 w-32 h-32 bg-[#38bdf8]/20 rounded-full blur-2xl pointer-events-none" />
-                            
-                            <div className="flex items-center justify-between z-10">
-                              <span className="inline-flex items-center gap-1.5 text-[10px] font-mono text-blue-300 bg-blue-500/20 px-2 py-0.5 rounded border border-blue-400/30">
-                                <Terminal className="w-3 h-3 text-[#38bdf8]" />
-                                SYSTEM TELEMETRY
-                              </span>
-                              <span className="text-[10px] font-mono text-emerald-400">99.99% OK</span>
-                            </div>
+                      <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-mono font-bold text-blue-200 uppercase tracking-widest">
+                        PROJ #{formattedIndex}
+                      </span>
 
-                            <div className="space-y-1.5 z-10 font-mono text-[10px] text-zinc-400">
-                              <div className="flex justify-between border-b border-white/5 pb-1">
-                                <span>STATUS:</span>
-                                <span className="text-white font-bold">DEPLOYED</span>
-                              </div>
-                              <div className="flex justify-between border-b border-white/5 pb-1">
-                                <span>ARCH:</span>
-                                <span className="text-blue-300">{project.subtitle.split('•')[0] || 'ENTERPRISE'}</span>
-                              </div>
-                            </div>
-                          </div>
-                        )}
-
-                        {/* Glass Overlay on Hover */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#0c0f1d] via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                      <div className="w-10 h-10 rounded-2xl bg-white/10 text-white group-hover:bg-white group-hover:text-[#25294a] transition-all duration-300 flex items-center justify-center shadow-md border border-white/10">
+                        <ArrowUpRight className="w-5 h-5 group-hover:rotate-45 transition-transform duration-300" aria-hidden="true" />
                       </div>
-
                     </div>
 
-                    {/* Bottom Content Body */}
-                    <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between relative z-10">
-                      
-                      <div>
-                        {/* Category Badge */}
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="px-2.5 py-0.5 rounded-full bg-[#3b5da6]/20 border border-[#3b5da6]/40 text-[#38bdf8] text-[10px] font-mono font-extrabold uppercase tracking-wider">
-                            {project.category}
-                          </span>
-                          <span className="text-[10px] font-mono text-zinc-500">
-                            #{project.title.charAt(0)}
-                          </span>
-                        </div>
+                    {/* Bottom Body: Subtitle Pill & Product Name */}
+                    <div className="relative z-10">
+                      <span className="px-2.5 py-1 rounded-md bg-[#3b5da6]/25 border border-[#3b5da6]/40 text-[10px] font-extrabold text-cyan-300 uppercase tracking-widest font-sans inline-block mb-2.5">
+                        {project.subtitle}
+                      </span>
+                      <h3 className="text-xl sm:text-2xl font-black text-white font-sans tracking-tight leading-tight group-hover:text-cyan-200 transition-colors line-clamp-1">
+                        {project.title}
+                      </h3>
 
-                        {/* Project Title */}
-                        <h3 className="text-lg sm:text-xl font-black text-white tracking-tight leading-snug group-hover:text-[#38bdf8] transition-colors line-clamp-1">
-                          {project.title}
-                        </h3>
-
-                        {/* Short Description / Outcome */}
-                        <p className="mt-1.5 text-xs text-zinc-400 font-medium leading-relaxed line-clamp-2">
-                          {project.outcome || project.problemStatement}
-                        </p>
-                      </div>
-
-                      {/* Bottom Footer Row */}
-                      <div className="flex items-center justify-between pt-3 border-t border-white/10 mt-auto">
-                        <span className="text-xs font-bold text-zinc-300 group-hover:text-white transition-colors flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#38bdf8] animate-pulse" />
-                          View Case Study
-                        </span>
-
-                        <div className="w-8 h-8 rounded-full bg-white/10 text-white group-hover:bg-[#38bdf8] group-hover:text-[#070913] transition-all duration-300 flex items-center justify-center shadow-md">
-                          <ArrowUpRight className="w-4 h-4 group-hover:rotate-45 transition-transform duration-300" aria-hidden="true" />
-                        </div>
-                      </div>
-
+                      {/* Glowing Cyan Hover Line */}
+                      <div className="w-0 group-hover:w-full h-1 bg-gradient-to-r from-[#3b5da6] via-cyan-400 to-[#3b5da6] transition-all duration-500 rounded-full mt-4" />
                     </div>
 
                   </div>
@@ -199,7 +136,7 @@ export default function OurProjects() {
               <motion.div
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.96 }}
-                className="px-8 py-4 rounded-2xl bg-gradient-to-r from-[#3b5da6] via-[#6366f1] to-[#38bdf8] text-white font-extrabold text-xs sm:text-sm uppercase tracking-wider shadow-2xl shadow-[#3b5da6]/30 transition-all duration-300 flex items-center gap-3 cursor-pointer"
+                className="px-8 py-4 rounded-2xl bg-[#25294a] hover:bg-[#3b5da6] text-white font-extrabold text-xs sm:text-sm uppercase tracking-wider shadow-2xl shadow-[#25294a]/30 transition-all duration-300 flex items-center gap-3 cursor-pointer"
               >
                 <span>View Full Enterprise Portfolio ({portfolioProjects.length} Projects)</span>
                 <ArrowRight className="w-4 h-4" aria-hidden="true" />

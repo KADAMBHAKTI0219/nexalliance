@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { HelpCircle, ChevronDown, ChevronUp } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { HelpCircle, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const DEFAULT_ITEMS = [
@@ -34,7 +34,7 @@ export default function FaqSection({
   className,
   ...props
 }) {
-  const [activeIndex, setActiveIndex] = useState(2); // Set 3rd item open by default matching reference screenshot
+  const [activeIndex, setActiveIndex] = useState(null);
 
   const toggleItem = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
@@ -59,7 +59,7 @@ export default function FaqSection({
       id="faq" 
       role="region" 
       aria-labelledby="faq-heading"
-      className="relative py-20 sm:py-28 bg-[#f8fafc] text-[#25294a] border-t border-zinc-100 overflow-hidden select-none"
+      className="relative py-20 sm:py-28 bg-white text-[#25294a] border-t border-zinc-100 overflow-hidden select-none"
     >
       {/* Inject AEO JSON-LD Schema for Search Engines & LLMs */}
       <script
@@ -109,9 +109,9 @@ export default function FaqSection({
           </motion.p>
         </header>
 
-        {/* FAQ Accordion List (Matching Exact Reference Divider Line) */}
+        {/* FAQ Accordion List */}
         <div className={cn("w-full max-w-4xl mx-auto font-sans", className)} {...props}>
-          <ul className="w-full mx-auto list-none p-0 flex flex-col gap-5 sm:gap-6">
+          <ul className="w-full mx-auto list-none p-0 flex flex-col gap-4">
             {items.map((item, index) => {
               const isActive = activeIndex === index;
               return (
@@ -120,52 +120,48 @@ export default function FaqSection({
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.07 }}
-                  className="w-full relative rounded-2xl sm:rounded-3xl border-2 border-[#3b5da6]/40 bg-white overflow-hidden shadow-md shadow-[#3b5da6]/5 transition-all duration-300"
+                  transition={{ delay: index * 0.08 }}
+                  className={cn(
+                    "w-full relative transition-all duration-300 ease-in rounded-2xl overflow-hidden border shadow-xs",
+                    isActive
+                      ? "border-[#3b5da6] bg-[#3b5da6]/5 shadow-sm shadow-[#3b5da6]/10"
+                      : "border-zinc-200/80 bg-zinc-50/70 hover:border-[#3b5da6]/40 hover:bg-zinc-50"
+                  )}
                 >
-                  {/* Top Question Header Bar */}
                   <button
                     type="button"
                     onClick={() => toggleItem(index)}
                     aria-expanded={isActive}
                     aria-controls={`faq-answer-${index}`}
-                    className={`w-full text-left p-6 sm:p-7 flex items-center justify-between gap-4 cursor-pointer focus:outline-none transition-colors ${
-                      isActive 
-                        ? 'bg-[#f0f4fa] border-b-2 border-[#3b5da6]/40' 
-                        : 'bg-[#f8fafc] hover:bg-[#f0f4fa]'
-                    }`}
+                    className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#3b5da6] rounded-2xl"
                   >
-                    <span className="text-base sm:text-lg lg:text-xl font-extrabold text-[#25294a] tracking-tight leading-snug">
+                    <span className="text-base sm:text-lg font-black text-[#25294a] tracking-tight leading-snug">
                       {item.question}
                     </span>
-                    
-                    {/* Blue Circular Toggle Icon */}
-                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#3b5da6] text-white flex items-center justify-center shadow-xs shrink-0 transition-transform duration-300">
-                      {isActive ? (
-                        <ChevronUp className="w-5 h-5 text-white" aria-hidden="true" />
-                      ) : (
-                        <ChevronDown className="w-5 h-5 text-white" aria-hidden="true" />
+                    <div
+                      className={cn(
+                        "p-2 rounded-full border transition-transform duration-300 shrink-0",
+                        isActive
+                          ? "bg-[#3b5da6] text-white border-[#3b5da6] rotate-180"
+                          : "bg-white text-[#25294a] border-zinc-200"
                       )}
+                    >
+                      <ChevronDown className="w-4 h-4" aria-hidden="true" />
                     </div>
                   </button>
 
-                  {/* Bottom Answer Body */}
-                  <AnimatePresence>
-                    {isActive && (
-                      <motion.div
-                        id={`faq-answer-${index}`}
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="overflow-hidden bg-white"
-                      >
-                        <div className="p-6 sm:p-7 text-sm sm:text-base text-zinc-700 font-medium leading-relaxed font-sans">
-                          {item.answer}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  {isActive && (
+                    <motion.div
+                      id={`faq-answer-${index}`}
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm lg:text-base text-zinc-600 font-medium leading-relaxed border-t border-[#3b5da6]/10"
+                    >
+                      {item.answer}
+                    </motion.div>
+                  )}
                 </motion.li>
               );
             })}

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { HelpCircle, ChevronDown, ChevronUp } from 'lucide-react';
+import { HelpCircle, ChevronDown, Sparkles } from 'lucide-react';
 
 const aboutFaqs = [
   {
@@ -31,7 +31,7 @@ export default function AboutFAQ() {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section className="relative bg-[#f8fafc] text-[#25294a] py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-t border-zinc-200/80 select-none">
+    <section className="relative bg-[#f8fafc] text-[#25294a] py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-t border-zinc-200/80">
       <div className="max-w-4xl mx-auto">
         
         {/* Section Header */}
@@ -50,40 +50,28 @@ export default function AboutFAQ() {
           </p>
         </div>
 
-        {/* FAQ Accordion List (Matching Exact Reference Divider Line) */}
-        <div className="flex flex-col gap-5 sm:gap-6">
+        {/* FAQ Accordion List */}
+        <div className="flex flex-col gap-4">
           {aboutFaqs.map((faq, idx) => {
             const isOpen = openIndex === idx;
             return (
               <div
                 key={idx}
-                className="rounded-2xl sm:rounded-3xl border-2 border-[#3b5da6]/40 bg-white overflow-hidden shadow-md shadow-[#3b5da6]/5 transition-all duration-300"
+                className="rounded-2xl bg-white border border-zinc-200/90 shadow-md overflow-hidden transition-all duration-300"
               >
-                {/* Top Question Header Bar */}
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : idx)}
-                  className={`w-full text-left p-6 sm:p-7 flex items-center justify-between gap-4 cursor-pointer focus:outline-none transition-colors ${
-                    isOpen 
-                      ? 'bg-[#f0f4fa] border-b-2 border-[#3b5da6]/40' 
-                      : 'bg-[#f8fafc] hover:bg-[#f0f4fa]'
-                  }`}
+                  className="w-full p-6 text-left flex items-center justify-between gap-4 cursor-pointer focus:outline-none"
                   aria-expanded={isOpen}
                 >
-                  <span className="text-base sm:text-lg lg:text-xl font-extrabold text-[#25294a] tracking-tight leading-snug">
+                  <span className="text-base sm:text-lg font-black text-[#25294a] font-sans">
                     {faq.question}
                   </span>
-                  
-                  {/* Blue Circular Toggle Icon */}
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#3b5da6] text-white flex items-center justify-center shadow-xs shrink-0 transition-transform duration-300">
-                    {isOpen ? (
-                      <ChevronUp className="w-5 h-5 text-white" />
-                    ) : (
-                      <ChevronDown className="w-5 h-5 text-white" />
-                    )}
+                  <div className={`p-2 rounded-full transition-transform duration-300 ${isOpen ? 'bg-[#3b5da6] text-white rotate-180' : 'bg-zinc-100 text-zinc-600'}`}>
+                    <ChevronDown className="w-4 h-4" />
                   </div>
                 </button>
 
-                {/* Bottom Answer Body */}
                 <AnimatePresence>
                   {isOpen && (
                     <motion.div
@@ -91,9 +79,9 @@ export default function AboutFAQ() {
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3 }}
-                      className="overflow-hidden bg-white"
+                      className="overflow-hidden"
                     >
-                      <div className="p-6 sm:p-7 text-sm sm:text-base text-zinc-700 font-medium leading-relaxed font-sans">
+                      <div className="px-6 pb-6 pt-1 text-sm sm:text-base font-medium text-zinc-600 leading-relaxed border-t border-zinc-100">
                         {faq.answer}
                       </div>
                     </motion.div>
