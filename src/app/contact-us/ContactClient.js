@@ -12,6 +12,8 @@ import {
   Copy,
   Check,
   Zap,
+  MessageCircle,
+  Navigation,
 } from 'lucide-react';
 
 const projectTypes = [
@@ -38,7 +40,7 @@ export default function ContactClient() {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText('hello@nexalliance.com');
+    navigator.clipboard.writeText('info@nexalliance.com');
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2000);
   };
@@ -87,7 +89,7 @@ export default function ContactClient() {
             transition={{ delay: 0.2 }}
             className="mt-4 text-base sm:text-lg text-zinc-600 font-normal leading-relaxed"
           >
-            Have a project in mind or need enterprise software architecture? Talk with our engineers and AI specialists today.
+            Innovate. Build. Transform. — Tell us about your project and our principal software architects will respond within one business day.
           </motion.p>
         </div>
 
@@ -95,7 +97,7 @@ export default function ContactClient() {
         {/* ================= MAIN CONTENT GRID ================= */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          {/* --- LEFT COLUMN: DIRECT TELEMETRY CONTACT CARDS --- */}
+          {/* --- LEFT COLUMN: OFFICIAL CONTACT CARDS & GOOGLE MAP --- */}
           <div className="lg:col-span-5 flex flex-col gap-6">
             
             {/* Quick Response Guarantee Banner */}
@@ -119,8 +121,10 @@ export default function ContactClient() {
                   <Mail className="w-6 h-6" />
                 </div>
                 <div className="truncate">
-                  <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider block">EMAIL ADDRESS</span>
-                  <span className="text-sm sm:text-base font-extrabold text-[#25294a] truncate block">hello@nexalliance.com</span>
+                  <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider block">OFFICIAL EMAIL</span>
+                  <a href="mailto:info@nexalliance.com" className="text-sm sm:text-base font-extrabold text-[#25294a] hover:text-[#3b5da6] transition-colors truncate block">
+                    info@nexalliance.com
+                  </a>
                 </div>
               </div>
               <button
@@ -129,11 +133,11 @@ export default function ContactClient() {
                 aria-label="Copy email address to clipboard"
               >
                 {copiedEmail ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
-                <span>{copiedEmail ? 'Copied to Clipboard!' : 'Copy Email Address'}</span>
+                <span>{copiedEmail ? 'Copied to Clipboard!' : 'Copy info@nexalliance.com'}</span>
               </button>
             </div>
 
-            {/* Direct Line / Call Card */}
+            {/* Direct Line / Call & WhatsApp Card */}
             <div className="p-6 rounded-3xl bg-white border border-zinc-200/90 shadow-md hover:border-[#3b5da6]/50 transition-colors flex flex-col justify-between">
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-12 h-12 rounded-2xl bg-[#3b5da6]/10 text-[#3b5da6] flex items-center justify-center shrink-0">
@@ -141,27 +145,66 @@ export default function ContactClient() {
                 </div>
                 <div>
                   <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider block">DIRECT PHONE / WHATSAPP</span>
-                  <span className="text-sm sm:text-base font-extrabold text-[#25294a]">+91 98765 43210</span>
+                  <a href="tel:+916351178511" className="text-sm sm:text-base font-extrabold text-[#25294a] hover:text-[#3b5da6] transition-colors block">
+                    +91 63511 78511
+                  </a>
                 </div>
               </div>
-              <a
-                href="tel:+919876543210"
-                className="w-full py-2.5 rounded-xl bg-[#25294a] hover:bg-[#3b5da6] text-white text-xs font-bold transition-colors flex items-center justify-center gap-2 cursor-pointer"
-                aria-label="Call or WhatsApp NexAlliance"
-              >
-                <Zap className="w-4 h-4 text-amber-400" />
-                <span>Call / Connect Instantly</span>
-              </a>
+              <div className="grid grid-cols-2 gap-3">
+                <a
+                  href="tel:+916351178511"
+                  className="py-2.5 rounded-xl bg-[#25294a] hover:bg-[#3b5da6] text-white text-xs font-bold transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                  aria-label="Call NexAlliance"
+                >
+                  <Zap className="w-3.5 h-3.5 text-amber-400" />
+                  <span>Call Direct</span>
+                </a>
+                <a
+                  href="https://wa.me/919723498878?text=Hi%20NexAlliance%2C%20I%27d%20like%20to%20discuss%20a%20project."
+                  target="_blank"
+                  rel="noreferrer"
+                  className="py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                  aria-label="Chat on WhatsApp"
+                >
+                  <MessageCircle className="w-3.5 h-3.5 text-white" />
+                  <span>WhatsApp</span>
+                </a>
+              </div>
             </div>
 
-            {/* Headquarters Card */}
-            <div className="p-6 rounded-3xl bg-white border border-zinc-200/90 shadow-md flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#3b5da6]/10 text-[#3b5da6] flex items-center justify-center shrink-0">
-                <MapPin className="w-6 h-6" />
+            {/* Headquarters Address Card */}
+            <div className="p-6 rounded-3xl bg-white border border-zinc-200/90 shadow-md flex flex-col gap-3">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-2xl bg-[#3b5da6]/10 text-[#3b5da6] flex items-center justify-center shrink-0">
+                  <MapPin className="w-6 h-6" />
+                </div>
+                <div>
+                  <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider block">SURAT HEADQUARTERS</span>
+                  <address className="text-xs sm:text-sm font-bold text-[#25294a] not-italic leading-relaxed">
+                    Dhwarkesh Society, 35, Lajamni Chowk, Near Raghuveer Shoppers, Mota Varachha, Surat, Gujarat 394101
+                  </address>
+                </div>
               </div>
-              <div>
-                <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider block">HEADQUARTERS</span>
-                <span className="text-xs sm:text-sm font-extrabold text-[#25294a]">Tech Hub, Bengaluru & Mumbai, India</span>
+
+              {/* Embedded Google Map */}
+              <div className="relative rounded-2xl overflow-hidden border border-zinc-200 shadow-inner mt-2">
+                <iframe
+                  title="NexAlliance Headquarters Surat Map"
+                  src="https://www.google.com/maps?q=Dhwarkesh+Society+35+Lajamni+Chowk+Mota+Varachha+Surat+Gujarat+394101&output=embed"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full h-[220px] block border-0"
+                  allowFullScreen=""
+                />
+                <a
+                  href="https://www.google.com/maps/dir/?api=1&destination=Dhwarkesh+Society+35+Lajamni+Chowk+Mota+Varachha+Surat+Gujarat+394101"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="absolute bottom-3 right-3 px-3 py-1.5 rounded-lg bg-[#25294a]/90 hover:bg-[#3b5da6] text-white text-[11px] font-bold shadow-md transition-colors flex items-center gap-1.5 backdrop-blur-md"
+                >
+                  <Navigation className="w-3 h-3 text-cyan-400" />
+                  <span>Get Directions</span>
+                </a>
               </div>
             </div>
 
@@ -181,7 +224,7 @@ export default function ContactClient() {
                   Send Us A Message
                 </h3>
                 <p className="text-xs sm:text-sm text-zinc-600">
-                  Fill out the form below and our engineering leads will respond in under 15 minutes.
+                  Fill out the form below and our engineering leads will respond within one business day.
                 </p>
               </div>
 
@@ -247,7 +290,7 @@ export default function ContactClient() {
                     </label>
                     <input
                       type="tel"
-                      placeholder="+1 (555) 000-0000"
+                      placeholder="+91 63511 78511"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full px-4 py-3 rounded-xl bg-zinc-50 border border-zinc-200 text-sm font-medium text-[#25294a] focus:outline-none focus:border-[#3b5da6] focus:ring-2 focus:ring-[#3b5da6]/20 transition-all"
